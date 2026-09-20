@@ -101,274 +101,302 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>متجر قطع وإكسسوارات الكمبيوتر - مصر</title>
+  <title>منصة عروض وتجميعات الكمبيوتر</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
   <style>
     :root {
-      --bg-primary: #0b0f19;
-      --bg-card: #151c2c;
-      --border-color: #232d42;
-      --accent-color: #2563eb;
-      --amazon-color: #ff9900;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --green-price: #22c55e;
+      --bg-main: #f3f4f6;
+      --bg-card: #ffffff;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --amazon: #ff9900;
+      --text-primary: #1f2937;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
-    body { background-color: var(--bg-primary); color: var(--text-main); padding-bottom: 60px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    body { background-color: var(--bg-main); color: var(--text-primary); padding-bottom: 50px; }
 
-    /* Header */
-    header {
-      background-color: #111827;
-      border-bottom: 1px solid var(--border-color);
-      padding: 20px;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    /* Top Navigation */
+    .top-nav {
+      background-color: #0f172a;
+      color: #fff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    header h1 { font-size: 1.5rem; color: #fff; margin-bottom: 15px; }
-    
-    /* Search Bar */
-    .search-container {
-      max-width: 600px;
-      margin: 0 auto;
+    .brand { font-size: 1.2rem; font-weight: bold; color: #38bdf8; display: flex; align-items: center; gap: 8px; }
+    .nav-actions { display: flex; gap: 12px; }
+    .btn-new { background-color: #22c55e; color: #fff; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+
+    /* Cover Banner Section */
+    .hero-banner {
+      height: 220px;
+      background: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1587202372775-e229f172b9d7?q=80&w=1200&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
       position: relative;
     }
-    .search-container input {
-      width: 100%;
-      padding: 12px 45px 12px 15px;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
-      background-color: var(--bg-primary);
+
+    /* Profile Info Bar */
+    .profile-bar {
+      background-color: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 20px;
+      position: relative;
+    }
+    .profile-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .profile-avatar {
+      width: 90px;
+      height: 90px;
+      background: var(--accent);
       color: #fff;
-      font-size: 0.95rem;
+      font-size: 2.2rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      margin-top: -60px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .profile-details h2 { font-size: 1.4rem; color: var(--text-primary); }
+    .profile-details p { color: var(--text-muted); font-size: 0.9rem; margin-top: 4px; }
+
+    .stats-group { display: flex; gap: 20px; text-align: center; }
+    .stat-box h4 { font-size: 1.2rem; color: var(--text-primary); }
+    .stat-box span { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; }
+
+    /* Main Content Container */
+    .main-container { max-width: 1100px; margin: 25px auto; padding: 0 15px; }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px 40px 10px 15px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
       outline: none;
     }
-    .search-container i {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--text-muted);
-    }
+    .search-box i { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
 
-    .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; }
+    /* Broad Horizontal Product Cards */
+    .products-list { display: flex; flex-direction: column; gap: 15px; }
 
-    /* Categories Tabs */
-    .category-tabs {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-      margin-bottom: 25px;
-      scrollbar-width: thin;
-    }
-    .tab-btn {
+    .product-row-card {
       background-color: var(--bg-card);
-      border: 1px solid var(--border-color);
-      color: var(--text-muted);
-      padding: 10px 18px;
-      border-radius: 20px;
-      cursor: pointer;
-      white-space: nowrap;
-      font-weight: 600;
-      font-size: 0.88rem;
-      transition: all 0.2s;
-    }
-    .tab-btn.active, .tab-btn:hover {
-      background-color: var(--accent-color);
-      color: #fff;
-      border-color: var(--accent-color);
-    }
-
-    /* Products Grid */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 18px;
-    }
-
-    /* Product Card */
-    .product-card {
-      background-color: var(--bg-card);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 16px;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-    .product-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent-color);
-    }
-
-    .card-badge {
-      font-size: 0.75rem;
-      background: rgba(37, 99, 235, 0.2);
-      color: #60a5fa;
-      padding: 4px 8px;
-      border-radius: 4px;
-      width: fit-content;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    .product-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text-main);
-      line-height: 1.4;
-      margin-bottom: 15px;
-    }
-
-    .card-footer {
-      display: flex;
+      gap: 20px;
       align-items: center;
-      justify-content: space-between;
-      margin-top: auto;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-row-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    .price {
-      font-size: 1.15rem;
+    .product-img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 8px;
+      background-color: #f8fafc;
+      border: 1px solid var(--border);
+    }
+
+    .product-content { flex: 1; }
+    .product-tag {
+      font-size: 0.75rem;
+      background-color: #eff6ff;
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 4px;
       font-weight: bold;
-      color: var(--green-price);
     }
+    .product-title { font-size: 1.05rem; margin: 8px 0 4px 0; color: var(--text-primary); }
+    .product-desc { font-size: 0.85rem; color: var(--text-muted); }
 
-    .amazon-btn {
-      background-color: var(--amazon-color);
-      color: #000;
+    .product-action { text-align: left; min-width: 140px; }
+    .product-price { font-size: 1.25rem; font-weight: bold; color: #16a34a; margin-bottom: 8px; }
+    
+    .buy-btn {
+      background-color: var(--amazon);
+      color: #111;
       text-decoration: none;
-      padding: 8px 12px;
+      padding: 8px 16px;
       border-radius: 6px;
       font-weight: bold;
       font-size: 0.85rem;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: opacity 0.2s;
     }
-    .amazon-btn:hover { opacity: 0.9; }
+
+    @media (max-width: 640px) {
+      .product-row-card { flex-direction: column; text-align: center; }
+      .product-action { text-align: center; width: 100%; }
+      .profile-container { justify-content: center; text-align: center; }
+      .profile-avatar { margin-left: auto; margin-right: auto; }
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>عروض وقطع الكمبيوتر والإكسسوارات (أمازون مصر)</h1>
-    <div class="search-container">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="searchInput" placeholder="ابحث عن فلاشة، ماوس، كارت شاشة، كابل..." onkeyup="filterProducts()">
+  <!-- Top Navigation -->
+  <div class="top-nav">
+    <div class="brand"><i class="fa-solid fa-desktop"></i> PC Builder Pro</div>
+    <div class="nav-actions">
+      <button class="btn-new"><i class="fa-solid fa-cart-shopping"></i> المتجر</button>
     </div>
-  </header>
+  </div>
 
-  <div class="container">
-    <!-- الأقسام -->
-    <div class="category-tabs">
-      <button class="tab-btn active" onclick="filterCategory('all', this)">الكل</button>
-      <button class="tab-btn" onclick="filterCategory('cheap', this)">منتجات خفيفة (أقل من 300 ج.م)</button>
-      <button class="tab-btn" onclick="filterCategory('flash', this)">فلاشات وكروت ذاكرة</button>
-      <button class="tab-btn" onclick="filterCategory('accessories', this)">ماوسات وكيبوردات</button>
-      <button class="tab-btn" onclick="filterCategory('cables', this)">كابلات وصلات</button>
-      <button class="tab-btn" onclick="filterCategory('storage', this)">هاردات & SSD</button>
-      <button class="tab-btn" onclick="filterCategory('pc_parts', this)">قطع كمبيوتر أصلية</button>
+  <!-- Hero Cover Banner -->
+  <div class="hero-banner"></div>
+
+  <!-- Profile / Page Info Bar -->
+  <div class="profile-bar">
+    <div class="profile-container">
+      <div style="display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap;">
+        <div class="profile-avatar">PC</div>
+        <div class="profile-details">
+          <h2>منصة عروض وتجميعات الكمبيوتر</h2>
+          <p><i class="fa-solid fa-location-dot"></i> مصر | تحديثات أسعار قطع وإكسسوارات الكمبيوتر</p>
+        </div>
+      </div>
+      <div class="stats-group">
+        <div class="stat-box"><h4>30+</h4><span>منتج مفعل</span></div>
+        <div class="stat-box"><h4>24/7</h4><span>تحديث أونلاين</span></div>
+        <div class="stat-box"><h4>100%</h4><span>روابط أصلية</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-container">
+    <div class="controls-bar">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="ابحث عن قطعة، فلاشة، ماوس، كابل..." onkeyup="filterProducts()">
+      </div>
     </div>
 
-    <!-- شبكة المنتجات -->
-    <div class="products-grid" id="productsGrid">
-      <!-- يتم التحميل هنا عبر JavaScript -->
+    <div class="products-list" id="productsList">
+      <!-- يتم عرض المنتجات هنا -->
     </div>
   </div>
 
   <script>
-    const TRACKING_ID = "pcbuilder2026-20";
+    const TRACKING_ID = "pcbuilder2026-20"; // كود التتبع الخاص بك
 
-    // قائمة منتجات متنوعة بأسعار مصرية وبأقسام خفيفة واقتصادية
     const products = [
-      // منتجات خفيفة واقتصادية وفلاشات
-      { id: 1, category: "flash", isCheap: true, catName: "فلاشة", name: "SanDisk Cruzer Blade 32GB USB 2.0", asin: "B002U1Z162", price: 185 },
-      { id: 2, category: "flash", isCheap: true, catName: "فلاشة", name: "Kingston DataTraveler Exodia 64GB USB 3.2", asin: "B08JD36Y64", price: 240 },
-      { id: 3, category: "flash", isCheap: false, catName: "فلاشة", name: "SanDisk Ultra 128GB USB 3.0 Flash Drive", asin: "B00P8XQ686", price: 420 },
-      { id: 4, category: "flash", isCheap: true, catName: "كارت ميموري", name: "SanDisk Ultra 32GB MicroSDHC Memory Card", asin: "B073JWXGNT", price: 195 },
-
-      // ماوسات وكيبوردات واكسسوارات خفيفة
-      { id: 5, category: "accessories", isCheap: true, catName: "ماوس", name: "ماوس سلكي يو اس بي USB اقتصادي للكمبيوتر", asin: "B005EJH6RW", price: 120 },
-      { id: 6, category: "accessories", isCheap: true, catName: "ماوس وايرلس", name: "ماوس لاسلكي 2.4GHz مريح لليد", asin: "B07235994B", price: 230 },
-      { id: 7, category: "accessories", isCheap: false, catName: "كيبورد وماوس", name: "طقم كيبورد وماوس سلكي مكتب من ديل / إتش بي", asin: "B013C9S21Q", price: 450 },
-      { id: 8, category: "accessories", isCheap: true, catName: "ماوس باد", name: "ماوس باد قياسية ضد الانزلاق للألعاب والمكتب", asin: "B000UEZ1SM", price: 90 },
-
-      // كابلات ووصلات اقتصادية
-      { id: 9, category: "cables", isCheap: true, catName: "كابل HDMI", name: "كابل HDMI إلى HDMI 1.5 متر لدقة 1080p", asin: "B014I8SSD0", price: 85 },
-      { id: 10, category: "cables", isCheap: true, catName: "تحويلة", name: "تحويلة OTG Type-C إلى USB 3.0 للموبايل والكمبيوتر", asin: "B015Z7XE0A", price: 65 },
-      { id: 11, category: "cables", isCheap: true, catName: "كابل نت", name: "كابل شبكة Cat6 إيثرنت طول 3 متر", asin: "B00N2VIALK", price: 110 },
-
-      // هاردات ووسائط تخزين
-      { id: 12, category: "storage", isCheap: false, catName: "SSD داخلي", name: "Kingston A400 240GB SATA 3 SSD", asin: "B01N5IB20Q", price: 890 },
-      { id: 13, category: "storage", isCheap: false, catName: "SSD M.2", name: "Kingston NV2 500GB M.2 NVMe SSD", asin: "B0BBWJH1X8", price: 1650 },
-      { id: 14, category: "storage", isCheap: false, catName: "هارد خارجي", name: "WD Elements 1TB External Hard Drive", asin: "B06VVTVT39", price: 2850 },
-
-      // قطع كمبيوتر تجميعات
-      { id: 15, category: "pc_parts", isCheap: false, catName: "رامات", name: "Crucial 8GB DDR4 3200MHz Desktop RAM", asin: "B08C4Z69LN", price: 850 },
-      { id: 16, category: "pc_parts", isCheap: false, catName: "معالج", name: "Intel Core i3-12100F Processor", asin: "B09NPJX7PV", price: 4200 },
-      { id: 17, category: "pc_parts", isCheap: false, catName: "كارت شاشة", name: "MSI GeForce GTX 1650 4GB GDDR6", asin: "B086VR41X2", price: 7900 }
+      {
+        cat: "فلاشات",
+        title: "SanDisk Cruzer Blade 32GB USB 2.0",
+        desc: "فلاشة صغيرة الحجم ومتينة لتخزين ونقل البيانات بسهولة.",
+        price: 185,
+        asin: "B002U1Z162",
+        img: "https://m.media-amazon.com/images/I/61I2a93A43L._AC_SL1500_.jpg"
+      },
+      {
+        cat: "فلاشات",
+        title: "Kingston DataTraveler Exodia 64GB USB 3.2",
+        desc: "سرعة نقل عالية وسعة مناسبة للكمبيوتر واللابتوب.",
+        price: 240,
+        asin: "B08JD36Y64",
+        img: "https://m.media-amazon.com/images/I/618xms037xL._AC_SL1200_.jpg"
+      },
+      {
+        cat: "ماوسات",
+        title: "Redragon M601 Gaming Mouse RGB",
+        desc: "ماوس ألعاب احترافي بأزرار إضافية وإضاءة RGB.",
+        price: 490,
+        asin: "B00HTK1NCS",
+        img: "https://m.media-amazon.com/images/I/71I3uX8mR0L._AC_SL1500_.jpg"
+      },
+      {
+        cat: "كابلات",
+        title: "كابل HDMI إلى HDMI 1.5 متر 1080p",
+        desc: "كابل توصيل للشاشات والتلفزيون بدقة عالية وخامات ممتازة.",
+        price: 85,
+        asin: "B014I8SSD0",
+        img: "https://m.media-amazon.com/images/I/81s6DUyQCZL._AC_SL1500_.jpg"
+      },
+      {
+        cat: "قطع كمبيوتر",
+        title: "Kingston NV2 500GB M.2 NVMe SSD",
+        desc: "وحدة تخزين سريعة جداً لتسريع فتح الويندوز والألعاب.",
+        price: 1650,
+        asin: "B0BBWJH1X8",
+        img: "https://m.media-amazon.com/images/I/51-U-yI5d-L._AC_SL1000_.jpg"
+      }
     ];
 
-    let currentCategory = 'all';
-
     function renderProducts(items) {
-      const grid = document.getElementById('productsGrid');
-      grid.innerHTML = '';
+      const list = document.getElementById('productsList');
+      list.innerHTML = '';
 
       if(items.length === 0) {
-        grid.innerHTML = '<p style="color: var(--text-muted); text-align: center; grid-column: 1/-1; padding: 40px;">لا توجد منتجات مطابقة للبحث.</p>';
+        list.innerHTML = '<p style="text-align:center; padding: 30px; color: var(--text-muted);">لا توجد نتائج مطابقة للبحث.</p>';
         return;
       }
 
       items.forEach(item => {
-        // رابط أمازون مصر المباشر مدمج به التتبع
-        const affiliateLink = `https://www.amazon.eg/dp/${item.asin}?tag=${TRACKING_ID}`;
+        const link = `https://www.amazon.eg/dp/${item.asin}?tag=${TRACKING_ID}`;
         const cardHTML = `
-          <div class="product-card">
-            <div>
-              <span class="card-badge">${item.catName}</span>
-              <h3 class="product-title">${item.name}</h3>
+          <div class="product-row-card">
+            <img class="product-img" src="${item.img}" alt="${item.title}" onerror="this.src='https://via.placeholder.com/110'">
+            <div class="product-content">
+              <span class="product-tag">${item.cat}</span>
+              <h3 class="product-title">${item.title}</h3>
+              <p class="product-desc">${item.desc}</p>
             </div>
-            <div class="card-footer">
-              <span class="price">${item.price.toLocaleString('ar-EG')} ج.م</span>
-              <a href="${affiliateLink}" target="_blank" rel="noopener" class="amazon-btn">
-                <i class="fa-brands fa-amazon"></i> شراء
+            <div class="product-action">
+              <div class="product-price">${item.price.toLocaleString('ar-EG')} ج.م</div>
+              <a href="${link}" target="_blank" rel="noopener" class="buy-btn">
+                <i class="fa-brands fa-amazon"></i> شراء الآن
               </a>
             </div>
           </div>
         `;
-        grid.innerHTML += cardHTML;
+        list.innerHTML += cardHTML;
       });
-    }
-
-    function filterCategory(cat, btn) {
-      currentCategory = cat;
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      filterProducts();
     }
 
     function filterProducts() {
-      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-      
-      const filtered = products.filter(item => {
-        let matchesCategory = false;
-        if (currentCategory === 'all') matchesCategory = true;
-        else if (currentCategory === 'cheap') matchesCategory = item.isCheap || item.price <= 300;
-        else matchesCategory = (item.category === currentCategory);
-
-        const matchesSearch = item.name.toLowerCase().includes(searchTerm) || item.catName.toLowerCase().includes(searchTerm);
-        return matchesCategory && matchesSearch;
-      });
-
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = products.filter(p => p.title.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q));
       renderProducts(filtered);
     }
 
