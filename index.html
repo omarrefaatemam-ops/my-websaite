@@ -188,7 +188,7 @@
             </div>
         </div>
 
-                                    <!DOCTYPE html>
+                                            <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -230,37 +230,6 @@
             color: #94a3b8;
             font-size: 1rem;
         }
-        /* شبكة اختيار المنصة */
-        .platforms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .platform-card {
-            background: #1e293b;
-            border: 2px solid #334155;
-            border-radius: 15px;
-            padding: 20px 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .platform-card:hover, .platform-card.active {
-            border-color: #38bdf8;
-            background: #334155;
-            transform: translateY(-3px);
-        }
-        .platform-card .icon {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
-            display: block;
-        }
-        .platform-card span {
-            font-weight: bold;
-            font-size: 1.05rem;
-        }
-        /* صندوق التحميل */
         .downloader-card {
             background: #1e293b;
             padding: 30px 20px;
@@ -318,6 +287,7 @@
             color: #eab308;
             display: none;
             margin-top: 15px;
+            font-weight: bold;
         }
         .result-box {
             margin-top: 20px;
@@ -327,15 +297,23 @@
             display: none;
             border: 1px dashed #38bdf8;
         }
-        .download-link {
+        .download-btn {
             display: inline-block;
+            width: 100%;
             margin-top: 10px;
             padding: 12px 20px;
             background-color: #22c55e;
             color: white;
-            text-decoration: none;
+            border: none;
             border-radius: 8px;
             font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+        .download-btn.audio {
+            background-color: #0284c7;
         }
     </style>
 </head>
@@ -344,29 +322,12 @@
     <div class="container">
         <header>
             <h1>🚀 مركز استخراج الميديا المتكامل</h1>
-            <p>اختر المنصة التي تريد التحميل أو استخراج الصوت منها</p>
+            <p>استخراج وتحميل الفيديو والصوت بسهولة</p>
         </header>
 
-        <!-- اختيارات المنصات -->
-        <div class="platforms-grid">
-            <div class="platform-card active" onclick="selectPlatform('tiktok', '🎵 محمل تيك توك بدون علامة مائية', 'ضع رابط فيديو التيك توك لاستخراج الفيديو أو الصوت (MP3)')">
-                <span class="icon">🎵</span>
-                <span>تيك توك</span>
-            </div>
-            <div class="platform-card" onclick="selectPlatform('youtube', '▶️ محمل ومستخرج صوت يوتيوب', 'ضع رابط فيديو اليوتيوب لتحويله لصوت أو فيديو')">
-                <span class="icon">▶️</span>
-                <span>يوتيوب</span>
-            </div>
-            <div class="platform-card" onclick="selectPlatform('instagram', '📸 محمل ريلز إنستغرام', 'ضع رابط الريلز أو المنشور للتحميل المباشر')">
-                <span class="icon">📸</span>
-                <span>إنستغرام</span>
-            </div>
-        </div>
-
-        <!-- صندوق التحميل -->
         <div class="downloader-card">
-            <h2 id="platformTitle">🎵 محمل تيك توك بدون علامة مائية</h2>
-            <p id="platformDesc">ضع رابط فيديو التيك توك لاستخراج الفيديو أو الصوت (MP3)</p>
+            <h2>🎵 محمل تيك توك بدون علامة مائية</h2>
+            <p>ضع رابط فيديو التيك توك لاستخراج الفيديو أو الصوت (MP3)</p>
 
             <div class="input-group">
                 <input type="url" id="videoUrl" placeholder="انسب الرابط هنا..." required>
@@ -381,6 +342,100 @@
             </div>
         </div>
     </div>
+
+    <script>
+        async function processVideo() {
+            const urlInput = document.getElementById('videoUrl').value.trim();
+            const loadingText = document.getElementById('loadingText');
+            const resultBox = document.getElementById('resultBox');
+            const linksContainer = document.getElementById('linksContainer');
+
+            if (!urlInput) {
+                alert('يرجى وضع رابط الفيديو أولاً!');
+                return;
+            }
+
+            loadingText.innerText = 'جاري التحليل واستخراج الروابط... انتظر لحظة ⏳';
+            loadingText.style.display = 'block';
+            resultBox.style.display = 'none';
+            linksContainer.innerHTML = '';
+
+            try {
+                const response = await fetch('https://www.tikwm.com/api/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        'url': urlInput,
+                        'count': 12,
+                        'cursor': 0,
+                        'web': 1
+                    })
+                });
+
+                const resData = await response.json();
+                loadingText.style.display = 'none';
+
+                if (resData && resData.data) {
+                    const data = resData.data;
+                    resultBox.style.display = 'block';
+
+                    // رابط الفيديو
+                    if (data.play) {
+                        linksContainer.innerHTML += `
+                            <button onclick="downloadMedia('${data.play}', 'tiktok_video.mp4')" class="download-btn">
+                                🎬 تحميل الفيديو بدون علامة مائية
+                            </button>`;
+                    }
+
+                    // رابط الصوت MP3
+                    if (data.music) {
+                        linksContainer.innerHTML += `
+                            <button onclick="downloadMedia('${data.music}', 'tiktok_audio.mp3')" class="download-btn audio">
+                                🎵 تحميل الصوت فقط (MP3)
+                            </button>`;
+                    }
+                } else {
+                    alert('لم نتمكن من تحليل هذا الرابط، تأكد من صحته وحاول مرة أخرى.');
+                }
+            } catch (error) {
+                loadingText.style.display = 'none';
+                alert('حدث خطأ في الاتصال، يرجى إعادة المحاولة.');
+            }
+        }
+
+        // دالة التحميل المباشر لمنع خطأ 404
+        async function downloadMedia(fileUrl, fileName) {
+            const loadingText = document.getElementById('loadingText');
+            loadingText.innerText = 'جاري التنزيل على جهازك... 📥';
+            loadingText.style.display = 'block';
+
+            try {
+                const res = await fetch(fileUrl);
+                const blob = await res.blob();
+                const blobUrl = window.URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                window.URL.revokeObjectURL(blobUrl);
+                
+                loadingText.style.display = 'none';
+            } catch (e) {
+                loadingText.style.display = 'none';
+                // في حالة وجود حظر على التنزيل المباشر، يفتح الملف في تبويب جديد
+                window.open(fileUrl, '_blank');
+            }
+        }
+    </script>
+
+</body>
+</html>
+        
 
     <script>
         let currentPlatform = 'tiktok';
@@ -452,13 +507,6 @@
                 } else {
                     alert('لم نتمكن من تحليل هذا الرابط، تأكد من صحته وحاول مرة أخرى.');
                 }
-            } catch (error) {
-                loadingText.style.display = 'none';
-                alert('حدث خطأ في الاتصال، يرجى إعادة المحاولة.');
-            }
-        }
-    </script>
-
 </body>
 </html>
     
