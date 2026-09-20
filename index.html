@@ -119,3 +119,266 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عمر الشريف | Omegle Random Chat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+            padding: 15px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+        header {
+            text-align: center;
+            padding: 20px 15px;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            border-radius: 20px;
+            border: 1px solid #475569;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+        header h1 {
+            font-size: 1.6rem;
+            color: #38bdf8;
+            margin-bottom: 5px;
+        }
+        header p {
+            color: #94a3b8;
+            font-size: 0.88rem;
+        }
+        .owner-btn {
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+            margin-top: 12px;
+            padding: 8px 18px;
+            background: linear-gradient(45deg, #00f2fe, #fe2c55);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        /* كارت الشات المباشر */
+        .chat-card {
+            background: #1e293b;
+            border-radius: 20px;
+            border: 1px solid #334155;
+            padding: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            height: 450px;
+        }
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #334155;
+            font-size: 0.9rem;
+        }
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .chat-box {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .message {
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            word-break: break-word;
+        }
+        .message.system {
+            background: #0f172a;
+            color: #eab308;
+            align-self: center;
+            text-align: center;
+            font-size: 0.8rem;
+            border: 1px dashed #eab308;
+            width: 100%;
+        }
+        .message.user {
+            background: #0284c7;
+            color: white;
+            align-self: flex-start;
+            border-bottom-right-radius: 2px;
+        }
+        .message.stranger {
+            background: #334155;
+            color: #f8fafc;
+            align-self: flex-end;
+            border-bottom-left-radius: 2px;
+        }
+        .chat-controls {
+            display: flex;
+            gap: 10px;
+            padding-top: 12px;
+            border-top: 1px solid #334155;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: #fff;
+            outline: none;
+            font-size: 0.9rem;
+        }
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.88rem;
+        }
+        .btn-start { background: #22c55e; color: white; }
+        .btn-send { background: #0284c7; color: white; }
+        .btn-next { background: #fe2c55; color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>🔥 Omegle Random Chat | عمر الشريف</h1>
+            <p>منصة التعارف والعشوائية - تواصل مع أشخاص جدد فوراً!</p>
+            <a href="https://www.tiktok.com/@omar.sherif625?_r=1&_t=ZS-99tJIvnmR0v" target="_blank" class="owner-btn">
+                🎵 حساب صاحب الموقع (عمر الشريف)
+            </a>
+        </header>
+
+        <div class="chat-card">
+            <div class="chat-header">
+                <div>
+                    <span class="status-dot"></span>
+                    <span id="chatStatus">الحالة: غير متصل</span>
+                </div>
+                <button class="btn btn-next" onclick="nextMatch()">شخص جديد 🎲</button>
+            </div>
+
+            <div class="chat-box" id="chatBox">
+                <div class="message system">اضغط على زر "شخص جديد 🎲" لبدء البحث عن شخص عشوائي للحديث معه!</div>
+            </div>
+
+            <div class="chat-controls">
+                <input type="text" id="msgInput" placeholder="اكتب رسالتك هنا..." disabled onkeypress="handleKey(event)">
+                <button class="btn btn-send" id="sendBtn" onclick="sendMessage()" disabled>إرسال 🚀</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isConnected = false;
+        const strangers = [
+            "أهلاً! أنت منين؟",
+            "هلا، بتلعب ببجي ولا لأ؟",
+            "عندك حساب تيك توك نتابع بعض؟",
+            "مساء الخير! عامل ايه؟",
+            "أنا بقالي ساعة مستني حد يدخل الشات 😂"
+        ];
+
+        function nextMatch() {
+            const chatBox = document.getElementById('chatBox');
+            const status = document.getElementById('chatStatus');
+            const input = document.getElementById('msgInput');
+            const sendBtn = document.getElementById('sendBtn');
+
+            chatBox.innerHTML = '<div class="message system">جاري البحث عن شخص عشوائي... 🔍</div>';
+            status.innerText = "الحالة: جاري البحث...";
+            input.disabled = true;
+            sendBtn.disabled = true;
+            isConnected = false;
+
+            setTimeout(() => {
+                chatBox.innerHTML += '<div class="message system">تم العثور على شخص عشوائي! يمكنك التحدث الآن 🎉</div>';
+                status.innerText = "الحالة: متصل مع غريب";
+                input.disabled = false;
+                sendBtn.disabled = false;
+                isConnected = true;
+
+                // رسالة ترحيبية من الغريب
+                setTimeout(() => {
+                    if(isConnected) {
+                        const randomMsg = strangers[Math.floor(Math.random() * strangers.length)];
+                        addMessage(randomMsg, 'stranger');
+                    }
+                }, 1200);
+            }, 2000);
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('msgInput');
+            const text = input.value.trim();
+
+            if (!text || !isConnected) return;
+
+            addMessage(text, 'user');
+            input.value = '';
+
+            // رد تلقائي ذكي لإشعار الزائر بالتفاعل
+            setTimeout(() => {
+                if (isConnected) {
+                    const replies = [
+                        "تمام جداً! اية تاني؟",
+                        "عاش والله 🔥",
+                        "ضيفني على تيك توك نتكلم هناك أسهل!",
+                        "حبيبي تسلم 🚀",
+                        "جميل جداً 👍"
+                    ];
+                    const reply = replies[Math.floor(Math.random() * replies.length)];
+                    addMessage(reply, 'stranger');
+                }
+            }, 1500);
+        }
+
+        function addMessage(text, sender) {
+            const chatBox = document.getElementById('chatBox');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender}`;
+            msgDiv.innerText = text;
+            chatBox.appendChild(msgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function handleKey(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+    </script>
+
+</body>
+</html>
