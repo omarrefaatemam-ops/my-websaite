@@ -44,3 +44,154 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم عمر الشريف - Omar Sherif</title>
+    <!-- استدعاء خط أسطوري مجاني -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        /* الهيدر والبروفايل */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+            border: 1px solid #475569;
+        }
+        header h1 {
+            font-size: 2.2rem;
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+        header p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+        /* كروت الأقسام */
+        .section-title {
+            font-size: 1.5rem;
+            color: #f1f5f9;
+            margin: 30px 0 15px;
+            border-right: 4px solid #38bdf8;
+            padding-right: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #334155;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+        .card h3 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+        /* أزرار وروابط */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #0284c7;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: #0369a1;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- قسم التعريف المخصص -->
+        <header>
+            <h1>عمر الشريف | Omar Sherif</h1>
+            <p>مطور برمجيات وعاشق للتقنية، الألعاب، والتصميم 🚀</p>
+            <div class="social-links">
+                <a href="#" class="btn">حساب PUBG</a>
+                <a href="#" class="btn">تواصل معي</a>
+            </div>
+        </header>
+
+        <!-- قسم مشاريعي البرمجية -->
+        <h2 class="section-title">💻 مشاريعي وأكوادي</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>رحلة عبر البعد الأزرق</h3>
+                <p>مشروع لعبة تفاعلية تم تصميمها باستخدام Scratch مع ميكانيكيات مميزة.</p>
+            </div>
+            <div class="card">
+                <h3>تطبيق Ride-Sharing</h3>
+                <p>تطبيق موبايل تم تطويره بلغة Dart وFlutter للتفاوض على الرحلات مع خرائط مدمجة.</p>
+            </div>
+        </div>
+
+        <!-- قسم الألعاب والاهتمامات -->
+        <h2 class="section-title">🎮 عالم الألعاب والتقنية</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>PUBG Mobile & WOW Mode</h3>
+                <p>تصميم خرائط مود العجائب (WOW) والتنافس في الغرف الخاصة 2v2.</p>
+            </div>
+            <div class="card">
+                <h3>تجارب المحاكيات والـ PC</h3>
+                <p>تجهيز وتعديل برامج المحاكاة مثل GameLoop وألعاب السباقات والشاشات المنقسمة.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>تم تصميم وتطوير هذا الموقع بواسطة عمر الشريف © 2026</p>
+        </footer>
+    </div>
+
+</body>
+</html>
