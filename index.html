@@ -188,17 +188,12 @@
             </div>
         </div>
 
-        <footer>
-            <p>تم تصميم وتطوير هذا الموقع بواسطة عمر الشريف © 2026</p>
-        </footer>
-    </div>
-
-<!DOCTYPE html>
+                                    <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مركز استخراج الفيديو والصوت - عمر الشريف</title>
+    <title>مركز استخراج الميديا المتكامل - عمر الشريف</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -265,7 +260,7 @@
             font-weight: bold;
             font-size: 1.05rem;
         }
-        /* كارت التحميل المتغير */
+        /* صندوق التحميل */
         .downloader-card {
             background: #1e293b;
             padding: 30px 20px;
@@ -368,7 +363,7 @@
             </div>
         </div>
 
-        <!-- صندوق التحميل التفاعلي -->
+        <!-- صندوق التحميل -->
         <div class="downloader-card">
             <h2 id="platformTitle">🎵 محمل تيك توك بدون علامة مائية</h2>
             <p id="platformDesc">ضع رابط فيديو التيك توك لاستخراج الفيديو أو الصوت (MP3)</p>
@@ -397,7 +392,6 @@
             document.getElementById('videoUrl').value = '';
             document.getElementById('resultBox').style.display = 'none';
 
-            // تحديث الشكل النشط للكروت
             const cards = document.querySelectorAll('.platform-card');
             cards.forEach(card => card.classList.remove('active'));
             event.currentTarget.classList.add('active');
@@ -419,37 +413,55 @@
             linksContainer.innerHTML = '';
 
             try {
-                // طلب API لاستخراج التيك توك
-                const response = await fetch(`https://api.tiklydown.eu.org/api/download?url=${encodeURIComponent(urlInput)}`);
-                const data = await response.json();
+                // خدمة API ثابته ومباشرة
+                const response = await fetch('https://www.tikwm.com/api/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams({
+                        'url': urlInput,
+                        'count': 12,
+                        'cursor': 0,
+                        'web': 1
+                    })
+                });
 
+                const resData = await response.json();
                 loadingText.style.display = 'none';
 
-                if (data && (data.video || data.music)) {
+                if (resData && resData.data) {
+                    const data = resData.data;
                     resultBox.style.display = 'block';
 
-                    if(data.video && data.video.noWatermark) {
+                    // فيديو بدون علامة مائية
+                    if (data.play) {
                         linksContainer.innerHTML += `
-                            <a href="${data.video.noWatermark}" target="_blank" class="download-link">
+                            <a href="${data.play}" target="_blank" class="download-link">
                                 🎬 تحميل الفيديو بدون علامة مائية
                             </a>`;
                     }
 
-                    if(data.music && data.music.play_url) {
+                    // صوت MP3
+                    if (data.music) {
                         linksContainer.innerHTML += `
-                            <a href="${data.music.play_url}" target="_blank" class="download-link" style="background-color:#0284c7;">
+                            <a href="${data.music}" target="_blank" class="download-link" style="background-color:#0284c7;">
                                 🎵 تحميل الصوت فقط (MP3)
                             </a>`;
                     }
                 } else {
-                    alert('لم نتمكن من جلب رابط التحميل، تأكد من صحة الرابط وحاول مجدداً.');
+                    alert('لم نتمكن من تحليل هذا الرابط، تأكد من صحته وحاول مرة أخرى.');
                 }
             } catch (error) {
                 loadingText.style.display = 'none';
-                alert('حدث خطأ أثناء الاتصال بالسيرفر، يرجى المحاولة لاحقاً.');
+                alert('حدث خطأ في الاتصال، يرجى إعادة المحاولة.');
             }
         }
     </script>
+
+</body>
+</html>
+    
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
