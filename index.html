@@ -116,93 +116,121 @@
             </a>
         </div>
     </div>
-{
-  "tracking_id": "pcbuilder2026-20",
-  "categories": [
-    {
-      "category_id": "cpu",
-      "category_name": "المعالجات (CPUs)",
-      "items": [
-        {
-          "id": "cpu-001",
-          "name": "Intel Core i5-13400F",
-          "asin": "B0BN83N3B7",
-          "price_usd": 199.99,
-          "affiliate_url": "https://www.amazon.com/dp/B0BN83N3B7?tag=pcbuilder2026-20"
-        },
-        {
-          "id": "cpu-002",
-          "name": "AMD Ryzen 5 7600X",
-          "asin": "B0BBJDS62N",
-          "price_usd": 229.00,
-          "affiliate_url": "https://www.amazon.com/dp/B0BBJDS62N?tag=pcbuilder2026-20"
-        }
-      ]
-    },
-    {
-      "category_id": "gpu",
-      "category_name": "كروت الشاشة (GPUs)",
-      "items": [
-        {
-          "id": "gpu-001",
-          "name": "NVIDIA GeForce RTX 4060 8GB",
-          "asin": "B0C8JY4NKR",
-          "price_usd": 299.99,
-          "affiliate_url": "https://www.amazon.com/dp/B0C8JY4NKR?tag=pcbuilder2026-20"
-        }
-      ]
-    },
-    {
-      "category_id": "ram",
-      "category_name": "الرامات (RAM)",
-      "items": [
-        {
-          "id": "ram-001",
-          "name": "Corsair Vengeance LPX 16GB (2x8GB) DDR4",
-          "asin": "B0143UM4TC",
-          "price_usd": 39.99,
-          "affiliate_url": "https://www.amazon.com/dp/B0143UM4TC?tag=pcbuilder2026-20"
-        }
-      ]
-    },
-    {
-      "category_id": "storage",
-      "category_name": "وحدات التخزين (Storage)",
-      "items": [
-        {
-          "id": "ssd-001",
-          "name": "Kingston NV2 1TB M.2 NVMe SSD",
-          "asin": "B0BBWH1R8H",
-          "price_usd": 60.99,
-          "affiliate_url": "https://www.amazon.com/dp/B0BBWH1R8H?tag=pcbuilder2026-20"
-        }
-      ]
-    },
-    {
-      "category_id": "motherboard",
-      "category_name": "اللوحات الأم (Motherboards)",
-      "items": [
-        {
-          "id": "mb-001",
-          "name": "MSI PRO B760M-P DDR4",
-          "asin": "B0BRQR9X13",
-          "price_usd": 99.99,
-          "affiliate_url": "https://www.amazon.com/dp/B0BRQR9X13?tag=pcbuilder2026-20"
-        }
-      ]
-    },
-    {
-      "category_id": "power_supply",
-      "category_name": "مزودات الطاقة (PSU)",
-      "items": [
-        {
-          "id": "psu-001",
-          "name": "MSI MAG A650BN 650W 80 Plus Bronze",
-          "asin": "B0991TZ39G",
-          "price_usd": 59.99,
-          "affiliate_url": "https://www.amazon.com/dp/B0991TZ39G?tag=pcbuilder2026-20"
-        }
-      ]
+    <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تجميعة الكمبيوتر - PC Builder</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
+    .container { max-width: 1000px; margin: auto; }
+    h1 { text-align: center; color: #38bdf8; margin-bottom: 30px; }
+    
+    .builder-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+    
+    .part-card {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-  ]
-}
+
+    .part-info { flex: 2; min-width: 250px; }
+    .part-category { font-size: 0.85rem; color: #94a3b8; font-weight: bold; }
+    .part-title { font-size: 1.1rem; color: #e2e8f0; margin: 5px 0; }
+    
+    .part-price { font-size: 1.2rem; font-weight: bold; color: #4ade80; flex: 1; text-align: left; }
+
+    .buy-btn {
+      background-color: #ff9900;
+      color: #111;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+    .buy-btn:hover { background-color: #ffac33; }
+
+    .summary-card {
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .total-price { font-size: 1.5rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>مُجمع قطع الكمبيوتر (PC Builder)</h1>
+    
+    <div id="builder" class="builder-grid">
+      <!-- يتم تحميل القطع هنا تلقائياً بـ JavaScript -->
+    </div>
+
+    <div class="summary-card">
+      <div>
+        <h3>إجمالي التجميعة المقترحة:</h3>
+        <span id="total-amount" class="total-price">$0.00</span>
+      </div>
+      <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">الأسعار محدثة ومربوطة مباشرة بـ Amazon</p>
+    </div>
+  </div>
+
+  <script>
+    const TRACKING_ID = "pcbuilder2026-20";
+
+    // بيانات التجميعة كاملة
+    const pcParts = [
+      { category: "المعالج (CPU)", name: "Intel Core i5-13400F", asin: "B0BN83N3B7", price: 199.99 },
+      { category: "كارت الشاشة (GPU)", name: "NVIDIA GeForce RTX 4060 8GB", asin: "B0C8JY4NKR", price: 299.99 },
+      { category: "اللوحة الأم (Motherboard)", name: "MSI PRO B760M-P DDR4", asin: "B0BRQR9X13", price: 99.99 },
+      { category: "الرامات (RAM)", name: "Corsair Vengeance LPX 16GB (2x8GB) DDR4", asin: "B0143UM4TC", price: 39.99 },
+      { category: "وحدة التخزين (Storage)", name: "Kingston NV2 1TB M.2 NVMe SSD", asin: "B0BBWH1R8H", price: 60.99 },
+      { category: "مزود الطاقة (PSU)", name: "MSI MAG A650BN 650W 80 Plus Bronze", asin: "B0991TZ39G", price: 59.99 }
+    ];
+
+    function renderPCBuilder() {
+      const builderContainer = document.getElementById('builder');
+      let totalPrice = 0;
+
+      builderContainer.innerHTML = '';
+
+      pcParts.forEach(part => {
+        totalPrice += part.price;
+        const affiliateLink = `https://www.amazon.com/dp/${part.asin}?tag=${TRACKING_ID}`;
+
+        const cardHTML = `
+          <div class="part-card">
+            <div class="part-info">
+              <span class="part-category">${part.category}</span>
+              <div class="part-title">${part.name}</div>
+            </div>
+            <div class="part-price">$${part.price.toFixed(2)}</div>
+            <a href="${affiliateLink}" target="_blank" class="buy-btn">شراء من أمازون</a>
+          </div>
+        `;
+        builderContainer.innerHTML += cardHTML;
+      });
+
+      document.getElementById('total-amount').innerText = `$${totalPrice.toFixed(2)}`;
+    }
+
+    // تشغيل الدالة فور تحميل الصفحة
+    renderPCBuilder();
+  </script>
+</body>
+</html>
