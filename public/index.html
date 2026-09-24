@@ -1,893 +1,146 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#070914">
-<title>عمر الشريف | OMAR TOOLS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
+  <title>OMAR TOOLS</title>
 
-body{
-font-family:Tahoma,Arial,sans-serif;
-background:#070914;
-color:#fff;
-min-height:100vh;
-overflow-x:hidden;
-}
+  <meta
+    name="description"
+    content="OMAR TOOLS - مجموعة أدوات مجانية ومفيدة في مكان واحد"
+  >
 
-body:before,body:after{
-content:"";
-position:fixed;
-width:380px;
-height:380px;
-border-radius:50%;
-filter:blur(100px);
-opacity:.25;
-z-index:-1;
-animation:float 8s infinite alternate ease-in-out;
-}
-
-body:before{
-background:#765cff;
-top:-130px;
-right:-100px;
-}
-
-body:after{
-background:#00c8ff;
-bottom:-150px;
-left:-100px;
-}
-
-@keyframes float{
-from{transform:translate(0,0)}
-to{transform:translate(70px,50px) scale(1.15)}
-}
-
-header{
-max-width:1150px;
-margin:auto;
-padding:25px 18px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-.brand{
-display:flex;
-align-items:center;
-gap:12px;
-}
-
-.logo{
-width:55px;
-height:55px;
-border-radius:18px;
-display:grid;
-place-items:center;
-font-size:23px;
-font-weight:bold;
-background:linear-gradient(135deg,#765cff,#00c6ff);
-box-shadow:0 10px 35px #0008;
-}
-
-.brand h1{font-size:22px}
-
-.brand p{
-color:#9ba6c2;
-font-size:12px;
-margin-top:4px;
-}
-
-.hero{
-max-width:1150px;
-margin:25px auto;
-padding:18px;
-}
-
-.hero-box{
-text-align:center;
-padding:55px 25px;
-border-radius:30px;
-border:1px solid #ffffff15;
-background:linear-gradient(135deg,#11172cee,#0a1020ee);
-box-shadow:0 25px 80px #0005;
-}
-
-.hero h2{
-font-size:clamp(34px,7vw,65px);
-margin-bottom:15px;
-}
-
-.hero h2 span{
-background:linear-gradient(90deg,#a18fff,#38d9ff);
--webkit-background-clip:text;
-color:transparent;
-}
-
-.hero p{
-max-width:680px;
-margin:auto;
-color:#b5bfd8;
-line-height:1.9;
-}
-
-.search{
-width:min(650px,100%);
-margin-top:25px;
-padding:16px 20px;
-border-radius:16px;
-border:1px solid #ffffff15;
-background:#080c18;
-color:white;
-outline:none;
-font-size:15px;
-}
-
-main{
-max-width:1150px;
-margin:auto;
-padding:0 18px 60px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:17px;
-}
-
-.card{
-padding:22px;
-border-radius:22px;
-border:1px solid #ffffff12;
-background:#0d1324e8;
-box-shadow:0 15px 40px #0003;
-transition:.25s;
-}
-
-.card:hover{
-transform:translateY(-6px);
-border-color:#7665ff66;
-}
-
-.icon{font-size:32px}
-
-.card h3{
-margin:12px 0 7px;
-}
-
-.card p{
-color:#9da8c5;
-font-size:13px;
-line-height:1.7;
-}
-
-button{
-border:0;
-border-radius:13px;
-padding:12px 16px;
-background:#181e33;
-color:white;
-cursor:pointer;
-font-weight:bold;
-margin-top:12px;
-}
-
-.primary{
-background:linear-gradient(135deg,#765cff,#00afea);
-}
-
-.panel{
-display:none;
-margin-top:15px;
-padding-top:15px;
-border-top:1px solid #ffffff10;
-}
-
-.panel.active{display:block}
-
-input,textarea{
-width:100%;
-padding:13px;
-margin:7px 0;
-border-radius:12px;
-border:1px solid #ffffff15;
-background:#080c18;
-color:white;
-}
-
-input[type="range"]{
-padding:0;
-}
-
-.result{
-margin-top:10px;
-padding:13px;
-border-radius:12px;
-background:#080c18;
-color:#c2cbe0;
-word-break:break-word;
-}
-
-.info{
-margin-top:8px;
-font-size:12px;
-color:#8995b2;
-}
-
-footer{
-text-align:center;
-color:#727d99;
-padding:25px;
-border-top:1px solid #ffffff0d;
-}
-
-@media(max-width:850px){
-.grid{grid-template-columns:repeat(2,1fr)}
-}
-
-@media(max-width:560px){
-.grid{grid-template-columns:1fr}
-.hero-box{padding:35px 17px}
-}
-</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
+  <!-- الهيدر -->
+  <header class="header">
 
-<div class="brand">
+    <div class="logo-area">
+      <div class="logo">O</div>
 
-<div class="logo">ع</div>
+      <div>
+        <h1>OMAR TOOLS</h1>
+        <p>كل أدواتك في مكان واحد</p>
+      </div>
+    </div>
 
-<div>
-<h1>عمر الشريف</h1>
-<p>OMAR TOOLS • أدوات مفيدة أونلاين</p>
-</div>
+    <button id="themeBtn" class="theme-btn">
+      ☀️
+    </button>
 
-</div>
+  </header>
 
-</header>
 
+  <!-- الصفحة الرئيسية -->
+  <main id="home">
 
-<section class="hero">
+    <section class="hero">
 
-<div class="hero-box">
+      <div class="hero-content">
 
-<h2>
-كل أدواتك في
-<span>مكان واحد</span>
-</h2>
+        <span class="badge">
+          OMAR TOOLS
+        </span>
 
-<p>
-أدوات سريعة ومجانية للصور والنصوص والألوان
-وكلمات المرور والمزيد.
-</p>
+        <h2>
+          كل الأدوات اللي محتاجها
+          <span>في مكان واحد</span>
+        </h2>
 
-<input
-id="search"
-class="search"
-placeholder="🔎 ابحث عن أداة..."
->
+        <p>
+          أدوات للصور والفيديو وPDF والنصوص وQR
+          والمطورين والحسابات وأكثر.
+        </p>
 
-</div>
+      </div>
 
-</section>
+      <div class="hero-logo">
+        OT
+      </div>
 
+    </section>
 
-<main>
 
-<div class="grid">
+    <!-- البحث -->
+    <section class="search-area">
 
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="🔎 ابحث عن أداة..."
+      >
 
-<!-- ضغط الصور -->
+    </section>
 
-<article class="card" data-name="ضغط الصور">
 
-<div class="icon">🖼️</div>
+    <!-- التصنيفات -->
+    <section
+      id="categories"
+      class="categories">
+    </section>
 
-<h3>ضغط الصور</h3>
 
-<p>
-قلل حجم الصورة مع الحفاظ على جودة مناسبة.
-</p>
+    <!-- الأدوات -->
+    <section
+      id="toolsGrid"
+      class="tools-grid">
+    </section>
 
-<button class="primary open">
-فتح الأداة
-</button>
+  </main>
 
-<div class="panel">
 
-<input
-type="file"
-id="compressFile"
-accept="image/*"
->
+  <!-- شاشة الأداة -->
+  <section
+    id="toolPage"
+    class="tool-page hidden">
 
-<label class="info">
-جودة الصورة:
-<span id="qualityValue">70</span>%
-</label>
+    <button
+      id="backButton"
+      class="back-button">
 
-<input
-type="range"
-id="quality"
-min="20"
-max="90"
-value="70"
->
+      ← رجوع للأدوات
 
-<button
-class="primary"
-id="compress">
-ضغط وتحميل
-</button>
+    </button>
 
-<div
-class="result"
-id="compressResult">
-جاهز
-</div>
+    <div class="tool-header">
 
-</div>
+      <span id="toolCategory"></span>
 
-</article>
+      <h2 id="toolTitle"></h2>
 
+      <p id="toolDescription"></p>
 
-<!-- تغيير الحجم -->
+    </div>
 
-<article class="card" data-name="تغيير حجم الصور">
+    <div
+      id="toolContent"
+      class="tool-content">
+    </div>
 
-<div class="icon">📐</div>
+  </section>
 
-<h3>تغيير حجم الصور</h3>
 
-<p>
-غيّر عرض الصورة بسهولة.
-</p>
+  <!-- الفوتر -->
+  <footer>
 
-<button class="primary open">
-فتح الأداة
-</button>
+    <strong>OMAR TOOLS</strong>
 
-<div class="panel">
+    <p>
+      أدوات مفيدة وسريعة في مكان واحد
+    </p>
 
-<input
-type="file"
-id="resizeFile"
-accept="image/*"
->
+    <small>
+      © 2026 OMAR TOOLS
+    </small>
 
-<input
-type="number"
-id="width"
-value="800"
-min="50"
-max="5000"
-placeholder="العرض بالبكسل"
->
+  </footer>
 
-<button
-class="primary"
-id="resize">
-تغيير الحجم وتحميل
-</button>
 
-<div
-class="result"
-id="resizeResult">
-جاهز
-</div>
-
-</div>
-
-</article>
-
-
-<!-- عداد الكلمات -->
-
-<article class="card" data-name="عداد الكلمات والحروف">
-
-<div class="icon">🔤</div>
-
-<h3>عداد الكلمات والحروف</h3>
-
-<p>
-اعرف عدد الكلمات والحروف والأسطر فورًا.
-</p>
-
-<button class="primary open">
-فتح الأداة
-</button>
-
-<div class="panel">
-
-<textarea
-id="counterText"
-rows="6"
-placeholder="اكتب النص هنا..."
-></textarea>
-
-<div
-class="result"
-id="counterResult">
-0 كلمة • 0 حرف • 0 سطر
-</div>
-
-</div>
-
-</article>
-
-
-<!-- كلمة المرور -->
-
-<article class="card" data-name="مولد كلمات المرور">
-
-<div class="icon">🔐</div>
-
-<h3>مولّد كلمات المرور</h3>
-
-<p>
-أنشئ كلمة مرور عشوائية بسهولة.
-</p>
-
-<button class="primary open">
-فتح الأداة
-</button>
-
-<div class="panel">
-
-<div
-class="result"
-id="password">
-اضغط توليد
-</div>
-
-<button
-class="primary"
-id="generate">
-توليد
-</button>
-
-<button id="copyPassword">
-نسخ
-</button>
-
-</div>
-
-</article>
-
-
-<!-- الألوان -->
-
-<article class="card" data-name="تحويل الألوان HEX RGB">
-
-<div class="icon">🎨</div>
-
-<h3>HEX → RGB</h3>
-
-<p>
-حوّل كود اللون إلى RGB.
-</p>
-
-<button class="primary open">
-فتح الأداة
-</button>
-
-<div class="panel">
-
-<input
-id="hex"
-value="#765CFF"
-placeholder="#FFFFFF"
->
-
-<button
-class="primary"
-id="convertColor">
-تحويل
-</button>
-
-<div
-class="result"
-id="rgbResult">
-RGB —
-</div>
-
-</div>
-
-</article>
-
-
-<!-- المؤقت -->
-
-<article class="card" data-name="مؤقت">
-
-<div class="icon">⏱️</div>
-
-<h3>مؤقت سريع</h3>
-
-<p>
-مؤقت بسيط للمذاكرة أو أي مهمة.
-</p>
-
-<button class="primary open">
-فتح الأداة
-</button>
-
-<div class="panel">
-
-<input
-id="seconds"
-type="number"
-min="1"
-value="60"
->
-
-<div
-class="result"
-id="timer">
-01:00
-</div>
-
-<button
-class="primary"
-id="startTimer">
-ابدأ
-</button>
-
-<button id="resetTimer">
-إعادة
-</button>
-
-</div>
-
-</article>
-
-</div>
-
-</main>
-
-
-<footer>
-© 2026 عمر الشريف — OMAR TOOLS
-</footer>
-
-
-<script>
-
-
-// فتح الأدوات
-
-document.querySelectorAll(".open").forEach(button=>{
-
-button.onclick=()=>{
-
-button.nextElementSibling.classList.toggle("active");
-
-};
-
-});
-
-
-// البحث
-
-document.getElementById("search").oninput=(event)=>{
-
-const query=event.target.value.toLowerCase();
-
-document.querySelectorAll(".card").forEach(card=>{
-
-const name=card.dataset.name.toLowerCase();
-
-card.style.display=
-name.includes(query) ? "block" : "none";
-
-});
-
-};
-
-
-// عداد الكلمات
-
-document.getElementById("counterText").oninput=(event)=>{
-
-const text=event.target.value;
-
-const words=text.trim()
-? text.trim().split(/\s+/).length
-:0;
-
-const characters=text.length;
-
-const lines=text
-? text.split("\n").length
-:0;
-
-document.getElementById("counterResult").textContent=
-`${words} كلمة • ${characters} حرف • ${lines} سطر`;
-
-};
-
-
-// مولد كلمة المرور
-
-document.getElementById("generate").onclick=()=>{
-
-const characters=
-"ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%";
-
-let password="";
-
-for(let i=0;i<16;i++){
-
-password+=characters[
-Math.floor(Math.random()*characters.length)
-];
-
-}
-
-document.getElementById("password").textContent=
-password;
-
-};
-
-
-// نسخ كلمة المرور
-
-document.getElementById("copyPassword").onclick=()=>{
-
-const password=
-document.getElementById("password").textContent;
-
-navigator.clipboard.writeText(password);
-
-};
-
-
-// تحويل HEX إلى RGB
-
-document.getElementById("convertColor").onclick=()=>{
-
-let hex=
-document.getElementById("hex").value
-.replace("#","")
-.trim();
-
-if(!/^[0-9a-fA-F]{6}$/.test(hex)){
-
-document.getElementById("rgbResult").textContent=
-"❌ كود اللون غير صحيح";
-
-return;
-
-}
-
-const r=parseInt(hex.substring(0,2),16);
-const g=parseInt(hex.substring(2,4),16);
-const b=parseInt(hex.substring(4,6),16);
-
-document.getElementById("rgbResult").textContent=
-`RGB (${r}, ${g}, ${b})`;
-
-};
-
-
-// جودة ضغط الصورة
-
-document.getElementById("quality").oninput=(event)=>{
-
-document.getElementById("qualityValue").textContent=
-event.target.value;
-
-};
-
-
-// ضغط الصورة
-
-document.getElementById("compress").onclick=async()=>{
-
-const file=
-document.getElementById("compressFile").files[0];
-
-const result=
-document.getElementById("compressResult");
-
-if(!file){
-
-result.textContent="❌ اختار صورة الأول";
-
-return;
-
-}
-
-result.textContent="⏳ جاري ضغط الصورة...";
-
-const formData=new FormData();
-
-formData.append("image",file);
-
-formData.append(
-"quality",
-document.getElementById("quality").value
-);
-
-try{
-
-const response=await fetch(
-"/api/image/compress",
-{
-method:"POST",
-body:formData
-}
-);
-
-if(!response.ok){
-throw new Error();
-}
-
-const blob=await response.blob();
-
-const url=URL.createObjectURL(blob);
-
-const link=document.createElement("a");
-
-link.href=url;
-
-link.download="omar-tools-compressed.jpg";
-
-link.click();
-
-URL.revokeObjectURL(url);
-
-result.textContent="✅ تم ضغط الصورة وتحميلها";
-
-}catch(error){
-
-result.textContent=
-"❌ حصل خطأ. تأكد أن الـBackend شغال.";
-
-}
-
-};
-
-
-// تغيير حجم الصورة
-
-document.getElementById("resize").onclick=async()=>{
-
-const file=
-document.getElementById("resizeFile").files[0];
-
-const result=
-document.getElementById("resizeResult");
-
-if(!file){
-
-result.textContent="❌ اختار صورة الأول";
-
-return;
-
-}
-
-result.textContent="⏳ جاري تغيير الحجم...";
-
-const formData=new FormData();
-
-formData.append("image",file);
-
-formData.append(
-"width",
-document.getElementById("width").value
-);
-
-try{
-
-const response=await fetch(
-"/api/image/resize",
-{
-method:"POST",
-body:formData
-}
-);
-
-if(!response.ok){
-throw new Error();
-}
-
-const blob=await response.blob();
-
-const url=URL.createObjectURL(blob);
-
-const link=document.createElement("a");
-
-link.href=url;
-
-link.download="omar-tools-resized.jpg";
-
-link.click();
-
-URL.revokeObjectURL(url);
-
-result.textContent=
-"✅ تم تغيير حجم الصورة وتحميلها";
-
-}catch(error){
-
-result.textContent=
-"❌ حصل خطأ. تأكد أن الـBackend شغال.";
-
-}
-
-};
-
-
-// المؤقت
-
-let timerInterval=null;
-
-document.getElementById("startTimer").onclick=()=>{
-
-clearInterval(timerInterval);
-
-let seconds=
-Number(document.getElementById("seconds").value)||60;
-
-function updateTimer(){
-
-const minutes=
-Math.floor(seconds/60);
-
-const secs=
-seconds%60;
-
-document.getElementById("timer").textContent=
-`${String(minutes).padStart(2,"0")}:${String(secs).padStart(2,"0")}`;
-
-if(seconds<=0){
-
-clearInterval(timerInterval);
-
-return;
-
-}
-
-seconds--;
-
-}
-
-updateTimer();
-
-timerInterval=
-setInterval(updateTimer,1000);
-
-};
-
-
-// إعادة المؤقت
-
-document.getElementById("resetTimer").onclick=()=>{
-
-clearInterval(timerInterval);
-
-let seconds=
-Number(document.getElementById("seconds").value)||60;
-
-const minutes=
-Math.floor(seconds/60);
-
-const secs=
-seconds%60;
-
-document.getElementById("timer").textContent=
-`${String(minutes).padStart(2,"0")}:${String(secs).padStart(2,"0")}`;
-
-};
-
-</script>
+  <script src="app.js"></script>
 
 </body>
-  </html>
+</html>
