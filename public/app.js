@@ -1,632 +1,968 @@
-const tools = [
 
-  // الصور
-  ["🖼️", "ضغط الصور", "الصور", "تقليل حجم الصور"],
-  ["📐", "تغيير حجم الصور", "الصور", "تغيير أبعاد الصور"],
-  ["🔄", "JPG ↔ PNG", "الصور", "تحويل صيغ الصور"],
-  ["🌐", "WebP → JPG", "الصور", "تحويل WebP إلى JPG"],
-  ["🔤", "OCR", "الصور", "استخراج النص من الصور"],
+// ==========================================
+// OMAR TOOLS - APP.JS
+// ==========================================
+
+const tools = [
+  // صور
+  ["ضغط الصور", "🖼️", "صور", "تقليل حجم الصورة", "file"],
+  ["تغيير حجم الصورة", "📐", "صور", "تغيير أبعاد الصورة", "file"],
+  ["JPG إلى PNG", "🔄", "صور", "تحويل JPG إلى PNG", "file"],
+  ["PNG إلى JPG", "🔄", "صور", "تحويل PNG إلى JPG", "file"],
+  ["WebP إلى JPG", "🔄", "صور", "تحويل WebP إلى JPG", "file"],
+  ["معلومات الصورة", "ℹ️", "صور", "عرض معلومات الصورة", "file"],
+  ["مولد الألوان", "🎨", "صور", "اختيار ومعرفة أكواد الألوان", "color"],
+  ["HEX إلى RGB", "🌈", "صور", "تحويل HEX إلى RGB", "hex"],
 
   // PDF
-  ["📄", "دمج PDF", "PDF", "دمج ملفات PDF"],
-  ["✂️", "تقسيم PDF", "PDF", "تقسيم ملف PDF"],
-  ["🗜️", "ضغط PDF", "PDF", "تقليل حجم PDF"],
-  ["🖼️", "PDF → JPG", "PDF", "تحويل PDF إلى صور"],
-  ["📕", "JPG → PDF", "PDF", "تحويل الصور إلى PDF"],
+  ["دمج PDF", "📄", "PDF", "دمج ملفات PDF", "file"],
+  ["تقسيم PDF", "✂️", "PDF", "تقسيم ملف PDF", "file"],
+  ["ضغط PDF", "🗜️", "PDF", "تقليل حجم PDF", "file"],
+  ["PDF إلى JPG", "📄", "PDF", "تحويل PDF إلى صور", "file"],
+  ["JPG إلى PDF", "📑", "PDF", "تحويل الصور إلى PDF", "file"],
+  ["تدوير PDF", "🔃", "PDF", "تدوير صفحات PDF", "file"],
 
   // فيديو
-  ["🎬", "ضغط الفيديو", "الفيديو", "تقليل حجم الفيديو"],
-  ["✂️", "قص الفيديو", "الفيديو", "قص أجزاء من الفيديو"],
-  ["🎞️", "Video → GIF", "الفيديو", "تحويل الفيديو إلى GIF"],
-  ["🎵", "Video → MP3", "الفيديو", "استخراج الصوت من ملف تملكه"],
-  ["🔊", "تحويل الصوت", "الفيديو", "تحويل صيغ الصوت"],
+  ["ضغط الفيديو", "🎬", "فيديو", "تقليل حجم الفيديو", "file"],
+  ["قص الفيديو", "✂️", "فيديو", "قص ملف فيديو", "file"],
+  ["فيديو إلى GIF", "🎞️", "فيديو", "تحويل الفيديو إلى GIF", "file"],
+  ["استخراج الصوت", "🎵", "فيديو", "استخراج الصوت من ملف تملكه", "file"],
+  ["معلومات الفيديو", "ℹ️", "فيديو", "عرض معلومات الفيديو", "file"],
 
   // QR
-  ["🔳", "QR Generator", "QR", "إنشاء QR للرابط أو النص"],
-  ["📶", "QR WiFi", "QR", "إنشاء QR لشبكة WiFi"],
-  ["👤", "QR Contact", "QR", "إنشاء QR لجهة اتصال"],
+  ["مولد QR", "▦", "QR", "إنشاء QR من رابط أو نص", "qr"],
+  ["QR للواي فاي", "📶", "QR", "إنشاء QR لشبكة WiFi", "wifi"],
+  ["QR لجهة اتصال", "👤", "QR", "إنشاء QR لجهة اتصال", "contact"],
 
-  // النصوص
-  ["📝", "عداد الكلمات", "النصوص", "حساب الكلمات والحروف"],
-  ["🔠", "Upper / Lower Case", "النصوص", "تغيير حالة الأحرف"],
-  ["🧹", "تنظيف النص", "النصوص", "إزالة المسافات الزائدة"],
-  ["📋", "Text Sorter", "النصوص", "ترتيب أسطر النص"],
-  ["🧠", "Lorem Ipsum", "النصوص", "إنشاء نص تجريبي"],
+  // نصوص
+  ["عداد الكلمات", "🔢", "نصوص", "حساب الكلمات والحروف", "counter"],
+  ["حروف كبيرة", "🔠", "نصوص", "تحويل النص لحروف كبيرة", "upper"],
+  ["حروف صغيرة", "🔡", "نصوص", "تحويل النص لحروف صغيرة", "lower"],
+  ["تنظيف النص", "🧹", "نصوص", "إزالة المسافات الزائدة", "clean"],
+  ["عكس النص", "↔️", "نصوص", "عكس النص", "reverse"],
+  ["ترتيب السطور", "📋", "نصوص", "ترتيب السطور أبجديًا", "sort"],
+  ["Lorem Ipsum", "📝", "نصوص", "إنشاء نص تجريبي", "lorem"],
 
-  // المطورين
-  ["🧾", "JSON Formatter", "المطورين", "تنسيق JSON"],
-  ["🔐", "Base64", "المطورين", "Encode / Decode"],
-  ["🔗", "URL Encoder", "المطورين", "ترميز الروابط"],
-  ["🆔", "UUID Generator", "المطورين", "إنشاء UUID"],
-  ["🎨", "Color Picker", "المطورين", "اختيار الألوان"],
-  ["HEX", "HEX → RGB", "المطورين", "تحويل HEX إلى RGB"],
-  ["🧪", "Regex Tester", "المطورين", "اختبار Regex"],
+  // مطورين
+  ["JSON Formatter", "{ }", "مطورين", "تنسيق JSON", "json"],
+  ["Base64 Encode", "🔐", "مطورين", "تحويل النص إلى Base64", "base64encode"],
+  ["Base64 Decode", "🔓", "مطورين", "فك Base64", "base64decode"],
+  ["URL Encode", "🔗", "مطورين", "ترميز النص للرابط", "urlencode"],
+  ["URL Decode", "🔗", "مطورين", "فك ترميز الرابط", "urldecode"],
+  ["UUID Generator", "🆔", "مطورين", "إنشاء UUID", "uuid"],
+  ["Regex Tester", "🔎", "مطورين", "اختبار Regular Expression", "regex"],
+  ["HTML Formatter", "🌐", "مطورين", "تنسيق HTML", "formatter"],
+  ["CSS Formatter", "🎨", "مطورين", "تنسيق CSS", "formatter"],
+  ["JavaScript Formatter", "⚡", "مطورين", "تنسيق JavaScript", "formatter"],
+  ["Meta Tags", "🏷️", "مطورين", "إنشاء Meta Tags", "meta"],
+  ["HTTP Status", "🌐", "مطورين", "شرح أكواد HTTP", "http"],
 
-  // الحسابات
-  ["🔢", "حاسبة النسبة", "الحسابات", "حساب النسبة المئوية"],
-  ["🎂", "حاسبة العمر", "الحسابات", "حساب العمر"],
-  ["📏", "تحويل الوحدات", "الحسابات", "تحويل الوحدات"],
-  ["💱", "تحويل العملات", "الحسابات", "تحويل العملات"],
-  ["⏱️", "مؤقت", "الحسابات", "مؤقت سريع"],
-  ["🧮", "حاسبة", "الحسابات", "حاسبة بسيطة"],
+  // حسابات
+  ["حاسبة", "🧮", "حسابات", "حاسبة رياضية", "calculator"],
+  ["النسبة المئوية", "%", "حسابات", "حساب النسبة المئوية", "percentage"],
+  ["حاسبة العمر", "🎂", "حسابات", "حساب العمر", "age"],
+  ["فرق التاريخ", "📅", "حسابات", "الفرق بين تاريخين", "dateDiff"],
+  ["تحويل الوحدات", "📏", "حسابات", "تحويل المتر إلى وحدات مختلفة", "units"],
+  ["رقم عشوائي", "🎲", "حسابات", "إنشاء رقم عشوائي", "random"],
+  ["اختيار عشوائي", "🎯", "حسابات", "اختيار عنصر عشوائي", "choice"],
 
-  // الأمان
-  ["🔑", "مولد كلمات مرور", "الأمان", "توليد كلمات مرور"],
-  ["🔒", "Hash Generator", "الأمان", "إنشاء Hash"],
-
-  // ملفات
-  ["📦", "File Info", "الملفات", "عرض معلومات الملف"],
-  ["📊", "CSV Viewer", "الملفات", "عرض ملفات CSV"],
-
-  // أدوات إضافية
-  ["🔢", "Random Number", "أخرى", "رقم عشوائي"],
-  ["🎯", "Random Choice", "أخرى", "اختيار عشوائي"],
-  ["📅", "Date Difference", "أخرى", "فرق التاريخ"],
-  ["🕒", "Time Zone", "أخرى", "الوقت حسب المنطقة"]
+  // أدوات
+  ["مؤقت", "⏱️", "أدوات", "مؤقت تنازلي", "timer"],
+  ["ساعة إيقاف", "⏱️", "أدوات", "ساعة إيقاف", "stopwatch"],
+  ["مولد كلمة مرور", "🔑", "أدوات", "إنشاء كلمة مرور عشوائية", "password"],
+  ["مولد Hash", "#️⃣", "أدوات", "إنشاء SHA-256 Hash", "hash"],
+  ["معلومات الملف", "📁", "أدوات", "عرض معلومات الملف", "file"],
+  ["CSV Viewer", "📊", "أدوات", "عرض ملف CSV", "file"]
 ];
 
-let activeCategory = "الكل";
-
-const grid = document.getElementById("toolsGrid");
-const categories = document.getElementById("categories");
-const search = document.getElementById("searchInput");
-
-const toolPage = document.getElementById("toolPage");
 const home = document.getElementById("home");
+const toolPage = document.getElementById("toolPage");
+const toolsGrid = document.getElementById("toolsGrid");
+const categoriesBox = document.getElementById("categories");
+const searchInput = document.getElementById("searchInput");
 
 const toolTitle = document.getElementById("toolTitle");
 const toolCategory = document.getElementById("toolCategory");
 const toolDescription = document.getElementById("toolDescription");
 const toolContent = document.getElementById("toolContent");
+const backButton = document.getElementById("backButton");
+const themeBtn = document.getElementById("themeBtn");
 
-const categoryList = [
+let selectedCategory = "الكل";
+let timerInterval = null;
+let stopwatchInterval = null;
+let stopwatchSeconds = 0;
+
+
+// ==========================================
+// التصنيفات
+// ==========================================
+
+const categories = [
   "الكل",
   ...new Set(tools.map(tool => tool[2]))
 ];
 
 function renderCategories() {
 
-  categories.innerHTML = categoryList
-    .map(category => `
-      <button
-        class="category ${category === activeCategory ? "active" : ""}"
-        onclick="selectCategory('${category}')">
+  categoriesBox.innerHTML = "";
 
-        ${category}
+  categories.forEach(category => {
 
-      </button>
-    `)
-    .join("");
+    const button = document.createElement("button");
+
+    button.className =
+      "category" +
+      (selectedCategory === category ? " active" : "");
+
+    button.textContent = category;
+
+    button.addEventListener("click", () => {
+
+      selectedCategory = category;
+
+      renderCategories();
+      renderTools();
+
+    });
+
+    categoriesBox.appendChild(button);
+
+  });
 }
+
+
+// ==========================================
+// عرض الأدوات
+// ==========================================
 
 function renderTools() {
 
-  const text = search.value
-    .trim()
-    .toLowerCase();
+  const search =
+    (searchInput.value || "")
+      .trim()
+      .toLowerCase();
+
+  toolsGrid.innerHTML = "";
 
   const filtered = tools.filter(tool => {
 
-    const categoryMatch =
-      activeCategory === "الكل" ||
-      tool[2] === activeCategory;
+    const name = tool[0].toLowerCase();
+    const category = tool[2].toLowerCase();
+    const description = tool[3].toLowerCase();
 
-    const searchMatch =
-      tool[1].toLowerCase().includes(text) ||
-      tool[3].toLowerCase().includes(text);
+    const categoryOK =
+      selectedCategory === "الكل" ||
+      tool[2] === selectedCategory;
 
-    return categoryMatch && searchMatch;
+    const searchOK =
+      !search ||
+      name.includes(search) ||
+      category.includes(search) ||
+      description.includes(search);
+
+    return categoryOK && searchOK;
+
   });
 
-  grid.innerHTML = filtered
-    .map(tool => `
-      <article
-        class="tool-card"
-        onclick="openTool('${tool[1]}')">
+  if (filtered.length === 0) {
 
-        <div class="tool-icon">
-          ${tool[0]}
-        </div>
+    toolsGrid.innerHTML = `
+      <div class="result">
+        🔎 مفيش أداة مطابقة للبحث.
+      </div>
+    `;
 
-        <h3>${tool[1]}</h3>
+    return;
+  }
 
-        <p>${tool[3]}</p>
+  filtered.forEach(tool => {
 
-      </article>
-    `)
-    .join("");
+    const card = document.createElement("div");
+
+    card.className = "tool-card";
+
+    const icon = document.createElement("div");
+    icon.className = "tool-icon";
+    icon.textContent = tool[1];
+
+    const title = document.createElement("h3");
+    title.textContent = tool[0];
+
+    const description = document.createElement("p");
+    description.textContent = tool[3];
+
+    card.appendChild(icon);
+    card.appendChild(title);
+    card.appendChild(description);
+
+    card.addEventListener("click", () => {
+      openTool(tool);
+    });
+
+    toolsGrid.appendChild(card);
+
+  });
 }
 
-function selectCategory(category) {
 
-  activeCategory = category;
+// ==========================================
+// فتح الأداة
+// ==========================================
 
-  renderCategories();
-  renderTools();
-}
-
-search.addEventListener(
-  "input",
-  renderTools
-);
-
-function openTool(name) {
-
-  const tool = tools.find(
-    item => item[1] === name
-  );
-
-  if (!tool) return;
+function openTool(tool) {
 
   home.classList.add("hidden");
-
   toolPage.classList.remove("hidden");
 
   toolCategory.textContent = tool[2];
-
-  toolTitle.textContent = tool[1];
-
+  toolTitle.textContent = tool[0];
   toolDescription.textContent = tool[3];
 
-  createTool(tool);
+  toolContent.innerHTML =
+    createToolInterface(tool[4], tool);
+
+  setupTool(tool[4]);
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 }
 
-function createTool(tool) {
 
-  const name = tool[1];
+// ==========================================
+// الرجوع
+// ==========================================
 
-  if (name === "عداد الكلمات") {
+backButton.addEventListener("click", () => {
 
-    toolContent.innerHTML = `
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
 
-      <textarea
-        id="wordText"
-        placeholder="اكتب النص هنا...">
-      </textarea>
+  if (stopwatchInterval) {
+    clearInterval(stopwatchInterval);
+    stopwatchInterval = null;
+  }
 
-      <div
-        id="wordResult"
-        class="result">
+  toolPage.classList.add("hidden");
+  home.classList.remove("hidden");
 
-        الكلمات: 0 |
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+});
+
+
+// ==========================================
+// البحث
+// ==========================================
+
+searchInput.addEventListener("input", renderTools);
+
+
+// ==========================================
+// الأدوات - الواجهات
+// ==========================================
+
+function createToolInterface(type, tool) {
+
+  if (type === "counter") {
+
+    return `
+      <textarea id="counterInput"
+        placeholder="اكتب أو الصق النص هنا..."></textarea>
+
+      <div class="result" id="counterResult">
+        الكلمات: 0
         الحروف: 0
-
+        بدون مسافات: 0
       </div>
     `;
 
-    document
-      .getElementById("wordText")
-      .addEventListener("input", () => {
-
-        const text =
-          document.getElementById("wordText").value;
-
-        const words =
-          text.trim()
-            ? text.trim().split(/\s+/).length
-            : 0;
-
-        document.getElementById(
-          "wordResult"
-        ).textContent =
-          `الكلمات: ${words} | الحروف: ${text.length}`;
-      });
-
-    return;
   }
 
-  if (name === "JSON Formatter") {
 
-    toolContent.innerHTML = `
+  if (type === "json") {
 
-      <textarea
-        id="jsonText"
-        placeholder='{"name":"Omar"}'>
-      </textarea>
+    return `
+      <textarea id="jsonInput"
+        placeholder='مثال: {"name":"Omar","age":15}'></textarea>
 
-      <button
-        class="primary-button"
-        onclick="formatJSON()">
-
+      <button class="primary-button" id="jsonButton">
         تنسيق JSON
-
       </button>
 
-      <div
-        id="jsonResult"
-        class="result">
-      </div>
+      <div class="result" id="jsonResult"></div>
     `;
 
-    return;
   }
 
-  if (name === "Base64") {
 
-    toolContent.innerHTML = `
+  if (type === "base64encode" || type === "base64decode") {
 
-      <textarea
-        id="base64Text"
-        placeholder="اكتب النص هنا...">
-      </textarea>
+    return `
+      <textarea id="base64Input"
+        placeholder="اكتب النص هنا..."></textarea>
 
-      <button
-        class="primary-button"
-        onclick="encodeBase64()">
-
-        Encode
-
+      <button class="primary-button" id="base64Button">
+        ${type === "base64encode" ? "تشفير Base64" : "فك Base64"}
       </button>
 
-      <button
-        class="primary-button"
-        onclick="decodeBase64()">
-
-        Decode
-
-      </button>
-
-      <div
-        id="base64Result"
-        class="result">
-      </div>
+      <div class="result" id="base64Result"></div>
     `;
 
-    return;
   }
 
-  if (name === "مولد كلمات مرور") {
 
-    toolContent.innerHTML = `
+  if (type === "urlencode" || type === "urldecode") {
 
-      <label>
-        طول كلمة المرور
-      </label>
+    return `
+      <textarea id="urlInput"
+        placeholder="اكتب النص أو الرابط هنا..."></textarea>
+
+      <button class="primary-button" id="urlButton">
+        ${type === "urlencode" ? "ترميز URL" : "فك ترميز URL"}
+      </button>
+
+      <div class="result" id="urlResult"></div>
+    `;
+
+  }
+
+
+  if (type === "password") {
+
+    return `
+      <label>طول كلمة المرور</label>
 
       <input
         id="passwordLength"
         type="number"
-        value="16"
-        min="6"
-        max="64">
+        min="4"
+        max="100"
+        value="16">
 
-      <button
-        class="primary-button"
-        onclick="generatePassword()">
-
-        توليد كلمة مرور
-
+      <button class="primary-button" id="passwordButton">
+        إنشاء كلمة مرور
       </button>
 
-      <div
-        id="passwordResult"
-        class="result">
+      <div class="result" id="passwordResult"></div>
+    `;
+
+  }
+
+
+  if (type === "hex" || type === "color") {
+
+    return `
+      <input
+        id="colorInput"
+        type="color"
+        value="#7C5CFF">
+
+      <div class="result" id="colorResult">
+        HEX: #7C5CFF
       </div>
     `;
 
-    return;
   }
 
-  if (name === "HEX → RGB") {
 
-    toolContent.innerHTML = `
+  if (type === "percentage") {
 
-      <label>
-        لون HEX
-      </label>
+    return `
+      <label>الرقم</label>
 
       <input
-        id="hexInput"
-        placeholder="#7C5CFF">
+        id="percentageNumber"
+        type="number"
+        placeholder="مثال: 500">
 
-      <button
-        class="primary-button"
-        onclick="hexToRGB()">
-
-        تحويل
-
-      </button>
-
-      <div
-        id="hexResult"
-        class="result">
-      </div>
-    `;
-
-    return;
-  }
-
-  if (name === "حاسبة النسبة") {
-
-    toolContent.innerHTML = `
-
-      <label>
-        الرقم
-      </label>
+      <label>النسبة %</label>
 
       <input
-        id="percentNumber"
-        type="number">
+        id="percentageValue"
+        type="number"
+        placeholder="مثال: 20">
 
-      <label>
-        من
-      </label>
-
-      <input
-        id="percentTotal"
-        type="number">
-
-      <button
-        class="primary-button"
-        onclick="calculatePercent()">
-
+      <button class="primary-button" id="percentageButton">
         احسب
-
       </button>
 
-      <div
-        id="percentResult"
-        class="result">
+      <div class="result" id="percentageResult"></div>
+    `;
+
+  }
+
+
+  if (type === "calculator") {
+
+    return `
+      <input
+        id="calculatorInput"
+        placeholder="مثال: 20 + 5 * 2">
+
+      <button class="primary-button" id="calculatorButton">
+        احسب
+      </button>
+
+      <div class="result" id="calculatorResult"></div>
+    `;
+
+  }
+
+
+  if (type === "random") {
+
+    return `
+      <label>من</label>
+
+      <input
+        id="randomMin"
+        type="number"
+        value="1">
+
+      <label>إلى</label>
+
+      <input
+        id="randomMax"
+        type="number"
+        value="100">
+
+      <button class="primary-button" id="randomButton">
+        إنشاء رقم
+      </button>
+
+      <div class="result" id="randomResult"></div>
+    `;
+
+  }
+
+
+  if (type === "choice") {
+
+    return `
+      <textarea
+        id="choiceInput"
+        placeholder="اكتب كل اختيار في سطر"></textarea>
+
+      <button class="primary-button" id="choiceButton">
+        اختار 🎯
+      </button>
+
+      <div class="result" id="choiceResult"></div>
+    `;
+
+  }
+
+
+  if (type === "reverse") {
+
+    return `
+      <textarea id="reverseInput"
+        placeholder="اكتب النص"></textarea>
+
+      <button class="primary-button" id="reverseButton">
+        عكس النص
+      </button>
+
+      <div class="result" id="reverseResult"></div>
+    `;
+
+  }
+
+
+  if (type === "upper" || type === "lower") {
+
+    return `
+      <textarea id="caseInput"
+        placeholder="اكتب النص"></textarea>
+
+      <button class="primary-button" id="caseButton">
+        تحويل
+      </button>
+
+      <div class="result" id="caseResult"></div>
+    `;
+
+  }
+
+
+  if (type === "clean") {
+
+    return `
+      <textarea id="cleanInput"
+        placeholder="ضع النص هنا"></textarea>
+
+      <button class="primary-button" id="cleanButton">
+        تنظيف النص
+      </button>
+
+      <div class="result" id="cleanResult"></div>
+    `;
+
+  }
+
+
+  if (type === "sort") {
+
+    return `
+      <textarea id="sortInput"
+        placeholder="كل كلمة أو سطر في سطر منفصل"></textarea>
+
+      <button class="primary-button" id="sortButton">
+        ترتيب
+      </button>
+
+      <div class="result" id="sortResult"></div>
+    `;
+
+  }
+
+
+  if (type === "lorem") {
+
+    return `
+      <label>عدد الكلمات</label>
+
+      <input
+        id="loremCount"
+        type="number"
+        value="50"
+        min="1"
+        max="1000">
+
+      <button class="primary-button" id="loremButton">
+        إنشاء النص
+      </button>
+
+      <div class="result" id="loremResult"></div>
+    `;
+
+  }
+
+
+  if (type === "uuid") {
+
+    return `
+      <button class="primary-button" id="uuidButton">
+        إنشاء UUID
+      </button>
+
+      <div class="result" id="uuidResult"></div>
+    `;
+
+  }
+
+
+  if (type === "timer") {
+
+    return `
+      <label>عدد الثواني</label>
+
+      <input
+        id="timerInput"
+        type="number"
+        value="60"
+        min="1">
+
+      <button class="primary-button" id="timerButton">
+        تشغيل المؤقت
+      </button>
+
+      <div class="result" id="timerResult">
+        60
       </div>
     `;
 
-    return;
   }
 
-  if (name === "QR Generator") {
 
-    toolContent.innerHTML = `
+  if (type === "stopwatch") {
+
+    return `
+      <button class="primary-button" id="stopwatchButton">
+        تشغيل
+      </button>
+
+      <div class="result" id="stopwatchResult">
+        00:00:00
+      </div>
+    `;
+
+  }
+
+
+  if (type === "age") {
+
+    return `
+      <label>تاريخ الميلاد</label>
 
       <input
-        id="qrText"
-        placeholder="اكتب رابط أو نص...">
+        id="birthDate"
+        type="date">
 
-      <button
-        class="primary-button"
-        onclick="generateQR()">
+      <button class="primary-button" id="ageButton">
+        احسب العمر
+      </button>
 
+      <div class="result" id="ageResult"></div>
+    `;
+
+  }
+
+
+  if (type === "dateDiff") {
+
+    return `
+      <label>التاريخ الأول</label>
+
+      <input id="dateOne" type="date">
+
+      <label>التاريخ الثاني</label>
+
+      <input id="dateTwo" type="date">
+
+      <button class="primary-button" id="dateDiffButton">
+        احسب الفرق
+      </button>
+
+      <div class="result" id="dateDiffResult"></div>
+    `;
+
+  }
+
+
+  if (type === "units") {
+
+    return `
+      <label>القيمة بالمتر</label>
+
+      <input
+        id="meterValue"
+        type="number"
+        value="1">
+
+      <button class="primary-button" id="unitsButton">
+        تحويل
+      </button>
+
+      <div class="result" id="unitsResult"></div>
+    `;
+
+  }
+
+
+  if (type === "qr") {
+
+    return `
+      <input
+        id="qrInput"
+        placeholder="اكتب رابط أو نص">
+
+      <button class="primary-button" id="qrButton">
         إنشاء QR
-
       </button>
 
       <div
+        class="result"
         id="qrResult"
-        class="result">
+        style="text-align:center">
       </div>
     `;
 
-    return;
   }
 
-  if (
-    name === "ضغط الصور" ||
-    name === "تغيير حجم الصور" ||
-    name === "ضغط الفيديو" ||
-    name === "قص الفيديو" ||
-    name === "Video → MP3" ||
-    name === "Video → GIF" ||
-    name === "دمج PDF" ||
-    name === "ضغط PDF"
-  ) {
 
-    toolContent.innerHTML = `
+  if (type === "wifi") {
+
+    return `
+      <input
+        id="wifiName"
+        placeholder="اسم الشبكة">
 
       <input
-        id="fileInput"
-        type="file">
+        id="wifiPassword"
+        placeholder="كلمة مرور الشبكة">
 
-      <br><br>
+      <select id="wifiSecurity">
+        <option value="WPA">WPA / WPA2</option>
+        <option value="WEP">WEP</option>
+        <option value="nopass">بدون كلمة مرور</option>
+      </select>
 
-      <button
-        class="primary-button"
-        onclick="selectFile()">
-
-        اختيار الملف
-
+      <button class="primary-button" id="wifiButton">
+        إنشاء QR
       </button>
 
       <div
-        id="fileResult"
-        class="result">
-
-        اختار ملفًا للبدء.
-
+        class="result"
+        id="wifiResult"
+        style="text-align:center">
       </div>
     `;
 
-    return;
   }
 
-  toolContent.innerHTML = `
 
-    <p>
-      واجهة أداة ${name} جاهزة.
-    </p>
+  if (type === "contact") {
 
+    return `
+      <input
+        id="contactName"
+        placeholder="الاسم">
+
+      <input
+        id="contactPhone"
+        placeholder="رقم الهاتف">
+
+      <input
+        id="contactEmail"
+        placeholder="البريد الإلكتروني">
+
+      <button class="primary-button" id="contactButton">
+        إنشاء QR
+      </button>
+
+      <div
+        class="result"
+        id="contactResult"
+        style="text-align:center">
+      </div>
+    `;
+
+  }
+
+
+  if (type === "regex") {
+
+    return `
+      <input
+        id="regexPattern"
+        placeholder="مثال: ^[0-9]+$">
+
+      <textarea
+        id="regexText"
+        placeholder="النص المراد اختباره"></textarea>
+
+      <button class="primary-button" id="regexButton">
+        اختبار
+      </button>
+
+      <div class="result" id="regexResult"></div>
+    `;
+
+  }
+
+
+  if (type === "meta") {
+
+    return `
+      <input
+        id="metaTitle"
+        placeholder="عنوان الموقع">
+
+      <input
+        id="metaDescription"
+        placeholder="وصف الموقع">
+
+      <button class="primary-button" id="metaButton">
+        إنشاء Meta Tags
+      </button>
+
+      <div class="result" id="metaResult"></div>
+    `;
+
+  }
+
+
+  if (type === "http") {
+
+    return `
+      <input
+        id="httpInput"
+        type="number"
+        placeholder="مثال: 404">
+
+      <button class="primary-button" id="httpButton">
+        شرح الكود
+      </button>
+
+      <div class="result" id="httpResult"></div>
+    `;
+
+  }
+
+
+  // أدوات الملفات
+  if (type === "file") {
+
+    return `
+      <input id="toolFile" type="file">
+
+      <div
+        class="result"
+        id="fileResult">
+        اختار الملف من جهازك.
+      </div>
+    `;
+
+  }
+
+
+  // أي أداة لم يتم تنفيذها بعد
+  return `
     <div class="result">
-
-      الوظيفة الفعلية للأداة هنضيفها
-      في المرحلة التالية.
-
+      <h3>${tool[0]}</h3>
+      <p>
+        واجهة الأداة جاهزة داخل OMAR TOOLS.
+        سيتم إضافة المعالجة الكاملة للملفات في مرحلة التطوير التالية.
+      </p>
     </div>
   `;
+
 }
 
-function formatJSON() {
 
-  try {
+// ==========================================
+// تشغيل الأدوات
+// ==========================================
 
-    const value =
-      document.getElementById("jsonText").value;
+function setupTool(type) {
 
-    const result =
-      JSON.stringify(
-        JSON.parse(value),
-        null,
-        2
-      );
+  // عداد الكلمات
+  if (type === "counter") {
 
-    document.getElementById(
-      "jsonResult"
-    ).textContent = result;
+    const input = document.getElementById("counterInput");
+    const result = document.getElementById("counterResult");
 
-  } catch {
+    input.addEventListener("input", () => {
 
-    document.getElementById(
-      "jsonResult"
-    ).textContent =
-      "JSON غير صحيح.";
-  }
-}
+      const text = input.value;
 
-function encodeBase64() {
+      const words = text.trim()
+        ? text.trim().split(/\s+/).length
+        : 0;
 
-  const text =
-    document.getElementById("base64Text").value;
+      const chars = text.length;
 
-  document.getElementById(
-    "base64Result"
-  ).textContent =
-    btoa(
-      unescape(
-        encodeURIComponent(text)
-      )
-    );
-}
+      const noSpaces =
+        text.replace(/\s/g, "").length;
 
-function decodeBase64() {
+      result.textContent =
+        `الكلمات: ${words}
+الحروف: ${chars}
+بدون مسافات: ${noSpaces}`;
 
-  try {
+    });
 
-    const text =
-      document.getElementById("base64Text").value;
-
-    document.getElementById(
-      "base64Result"
-    ).textContent =
-      decodeURIComponent(
-        escape(atob(text))
-      );
-
-  } catch {
-
-    document.getElementById(
-      "base64Result"
-    ).textContent =
-      "Base64 غير صحيح.";
-  }
-}
-
-function generatePassword() {
-
-  const length =
-    Number(
-      document.getElementById(
-        "passwordLength"
-      ).value
-    );
-
-  const chars =
-    "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%";
-
-  let password = "";
-
-  for (
-    let i = 0;
-    i < length;
-    i++
-  ) {
-
-    password +=
-      chars[
-        Math.floor(
-          Math.random() * chars.length
-        )
-      ];
   }
 
-  document.getElementById(
-    "passwordResult"
-  ).textContent =
-    password;
-}
 
-function hexToRGB() {
+  // JSON
+  if (type === "json") {
 
-  let hex =
-    document.getElementById(
-      "hexInput"
-    ).value
-      .replace("#", "");
+    document.getElementById("jsonButton")
+      .addEventListener("click", () => {
 
-  if (hex.length !== 6) {
+        const input =
+          document.getElementById("jsonInput").value;
 
-    document.getElementById(
-      "hexResult"
-    ).textContent =
-      "اكتب لون HEX صحيح.";
+        try {
 
-    return;
+          const parsed = JSON.parse(input);
+
+          document.getElementById("jsonResult")
+            .textContent =
+            JSON.stringify(parsed, null, 2);
+
+        } catch (error) {
+
+          document.getElementById("jsonResult")
+            .textContent =
+            "❌ الـ JSON غير صحيح.";
+
+        }
+
+      });
+
   }
 
-  const r =
-    parseInt(hex.substring(0, 2), 16);
 
-  const g =
-    parseInt(hex.substring(2, 4), 16);
+  // Base64
+  if (type === "base64encode" || type === "base64decode") {
 
-  const b =
-    parseInt(hex.substring(4, 6), 16);
+    document.getElementById("base64Button")
+      .addEventListener("click", () => {
 
-  document.getElementById(
-    "hexResult"
-  ).textContent =
-    `rgb(${r}, ${g}, ${b})`;
-}
+        const value =
+          document.getElementById("base64Input").value;
 
-function calculatePercent() {
+        try {
 
-  const number =
-    Number(
-      document.getElementById(
-        "percentNumber"
-      ).value
-    );
+          let result;
 
-  const total =
-    Number(
-      document.getElementById(
-        "percentTotal"
-      ).value
-    );
+          if (type === "base64encode") {
 
-  if (!total) return;
+            result =
+              btoa(
+                unescape(
+                  encodeURIComponent(value)
+                )
+              );
 
-  document.getElementById(
-    "percentResult"
-  ).textContent =
-    `${((number / total) * 100).toFixed(2)}%`;
-}
+          } else {
 
-function generateQR() {
+            result =
+              decodeURIComponent(
+                escape(
+                  atob(value)
+                )
+              );
 
-  const text =
-    document.getElementById(
-      "qrText"
-    ).value;
+          }
 
-  if (!text) return;
+          document.getElementById("base64Result")
+            .textContent = result;
 
-  const encoded =
-    encodeURIComponent(text);
+        } catch {
 
-  document.getElementById(
-    "qrResult"
-  ).innerHTML = `
+          document.getElementById("base64Result")
+            .textContent =
+            "❌ البيانات غير صحيحة.";
 
-    <img
-      src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encoded}"
-      style="
-        max-width:250px;
-        background:white;
-        padding:10px;
+        }
+
+      });
+
+  }
+
+
+  // URL
+  if (type === "urlencode" || type === "urldecode") {
+
+    document.getElementById("urlButton")
+      .addEventListener("click", () => {
+
+        const value =
+          document.getElementById("urlInput").value;
+
+        try {
+
+          const result =
+            type === "urlencode"
+              ? encodeURIComponent(value)
+              : decodeURIComponent(value);
+
+          document.getElementById("urlResult")
+            .textContent = result;
+
+        } catch {
+
+          document.getElementById("urlResult")
+    
