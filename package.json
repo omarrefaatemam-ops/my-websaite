@@ -1,0 +1,14 @@
+{
+  "name": "omar-tools",
+  "version": "1.0.0",
+  "description": "OMAR TOOLS - أدوات عمر الشريف",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "multer": "^2.0.2",
+    "sharp": "^0.34.3"
+  }
+}
